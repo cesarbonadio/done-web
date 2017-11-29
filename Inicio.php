@@ -40,20 +40,7 @@
   </header>
 
 
-<?php  //botones de navegacion
-  if(isset($_POST['homepag'])){
-     $url = 'index.php';
-     header("Location:$url");
-   }
-  else if(isset($_POST['registrarsepag'])){
-     $url = 'Registro.php';
-     header("Location:$url");
-   }
-  else if(isset($_POST['iniciopag'])){
-    $url = 'Inicio.php';
-    header("Location:$url");
-   }
-?>
+
 
 
 
@@ -93,6 +80,30 @@
 </form>
 </section>
 <!---termina el formulario de inicio-->
+
+
+
+<?php
+
+if(isset($_POST['homepag'])){
+   $url = 'index.php';
+   header("Location:$url");
+ }
+else if(isset($_POST['registrarsepag'])){
+   $url = 'Registro.php';
+   header("Location:$url");
+ }
+else if(isset($_POST['iniciopag'])){
+  $url = 'Inicio.php';
+  header("Location:$url");
+ }
+
+else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, te lleva a recuperar contraseña
+ $url ="recuperarcontrasena.php";
+ header("Location: $url");
+}
+
+?>
 
 
 
@@ -152,17 +163,6 @@ include ("Usuario.php"); //incluir usuario
   $clave=$_POST["contrasena_usuario"];
   transformToJson($nombre,$clave);
  }
-
-
-
- else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, te lleva a recuperar contraseña
-  $url ="recuperarcontrasena.php";
-  header("Location: $url");
- }
-
-
-
-
 
 ?>
 
