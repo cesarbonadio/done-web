@@ -87,7 +87,6 @@ ob_start();
 
 </table>
 
-</table>
 </form>
 </section>
 <!---termina el formulario de inicio-->
