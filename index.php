@@ -28,7 +28,7 @@
 <body>
   <header>
     <!--<div id="logo">-->
-    <h1 class="titulo text-center">Done!</h1>
+    <h1 class="titulo text-center">Donee!</h1>
     <!--</div>-->
     <form action="index.php" method="POST" class="text-center">
       <input name="Registro" type="submit" class="btn boton" value="Registrar Usuario" />
