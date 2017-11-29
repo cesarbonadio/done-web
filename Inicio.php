@@ -83,11 +83,7 @@ ob_start();
   <tr>
   <td colspan="2" align="center"><input name="olvidecontra" type="submit" class="boton" value="Olvide mi contraseña"/> <td>
   </tr> 
-    </form>
-  
-  <tr>
-  <td colspan="2" align="center"><input name="olvidecontra" type="submit" class="boton" value="Olvide mi contraseña"/> <td>
-  </tr>
+     </form>
   
 </table>
 </section>
