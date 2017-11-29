@@ -79,14 +79,14 @@ ob_start();
   <tr>
   <td colspan="2" align="center"><input name="enviando" type="submit" class="boton" value="Entrar"/> <td>
   </tr>
-     </form>
+     
     
-    <form>
+
   <tr>
   <td colspan="2" align="center"><input name="olvidecontra" type="submit" class="boton" value="Olvide mi contraseña"/> <td>
   </tr>
+     
     </form>
-
 </table>
 
 
@@ -165,6 +165,7 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   $codigo=TransformToJson($nombre,$clave);
   if ($codigo==404){
   ?>
+ 
    <div class="ubicacion">
    <div class="container">
    <div class="col-md-6">
@@ -179,6 +180,7 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   }
   if ($codigo==401){
   ?>
+   <br>
    <div class="ubicacion">
    <div class="container">
    <div class="col-md-6">
