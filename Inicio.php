@@ -79,15 +79,17 @@ ob_start();
   <tr>
   <td colspan="2" align="center"><input name="enviando" type="submit" class="boton" value="Entrar"/> <td>
   </tr>
-
-
+     </form>
+    
+    <form>
   <tr>
   <td colspan="2" align="center"><input name="olvidecontra" type="submit" class="boton" value="Olvide mi contraseña"/> <td>
   </tr>
+    </form>
 
 </table>
 
-</form>
+
 </section>
 <!---termina el formulario de inicio-->
 <?php
