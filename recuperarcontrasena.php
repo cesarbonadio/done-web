@@ -191,9 +191,9 @@ try {
     $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress($correo, 'Joe User');     // Add a recipient
-    $mail->addAddress('ellen@example.com');               // Name is optional
+    $mail->setFrom('notreply@doneapp.com', 'Doneapp');
+    $mail->addAddress($correo);     // Add a recipient
+    //$mail->addAddress('ellen@example.com');               // Name is optional
     $mail->addReplyTo('info@example.com', 'Information');
     /*$mail->addCC('cc@example.com');
     $mail->addBCC('bcc@example.com');*/
@@ -204,8 +204,8 @@ try {
 
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->Subject = 'New password';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b> <br>Not reply this</br> <br>Contact us: doneeeapp@gmail.com</br>';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
