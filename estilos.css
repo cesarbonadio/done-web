@@ -58,7 +58,6 @@ header {
     border-radius: 0px 0px 20px 20px;
     /*margin: 20px auto;*/
 		margin-bottom: 20px;
-
 	}
 
 
@@ -240,14 +239,11 @@ text-align: center;
 	    background-image: url(fondo.svg);
 	  }
 	}
-
 	@media only screen and (max-width: 1280px) {
 	  body {
 	    background-image: url(fondo.svg);
 	  }
 	}
-
-
 	footer {
 	  margin-top: 30px;
 	  background-color: gray;

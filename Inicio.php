@@ -31,7 +31,7 @@ ob_start();
 <style type="text/css">
   .ubicacion{
     position: relative;
-    left:18%;
+    left:25%;
     top:-335px;
   }
 </style>
@@ -82,14 +82,14 @@ ob_start();
 
   <tr>
   <td colspan="2" align="center"><input name="olvidecontra" type="submit" class="boton" value="Olvide mi contraseña"/> <td>
-  </tr> 
+  </tr>
      </form>
-  
+
 </table>
 </section>
 
- 
-  
+
+
 <?php
 if(isset($_POST['homepag'])){
    $url = 'index.php';
@@ -108,19 +108,20 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
  header("Location: $url");
 }
 ?>
-  
-  
-  
+
+
+
 <section class="container">
 <ul>
 <li><img id ="icono" src="cloud.svg" height="40" width="40"/><b id="descripcion_icon">Si ya tienes una cuenta inicia sesión para ver tus tareas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
 <li><img id ="icono" src="smartphone.svg" height="40" width="40"/><b id="descripcion_icon">Disponible en dispositivos Android.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
 </ul>
 </section>
-  
-  
-  
+
+
+
 <?php
+
   function transformToJson($usuario, $clave){
           $data = array(
             'username' => $usuario,
@@ -154,12 +155,13 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
           curl_close($ch);
           return($codigo);
         }
+        
 
  include ("Usuario.php");
  $nombre=' ';
  $clave=' ';
  $direccion=' ';
- 
+
 
  if (isset($_POST["enviando"])) {
   $nombre=$_POST["nombre_usuario"];
@@ -168,29 +170,27 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   $codigo=TransformToJson($nombre,$clave);
   if ($codigo==404){
   ?>
-  
    <div class="ubicacion">
    <div class="container">
    <div class="col-md-6">
    <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Usuario No Existe</strong> , Revise e Inténtelo de Nuevo. 
+    <strong>Usuario No Existe</strong> , Revise e Inténtelo de Nuevo.
    </div>
    </div>
    </div>
    </div>
   <?php
   }
-   
+
   if ($codigo==401){
   ?>
-   <br>
    <div class="ubicacion">
    <div class="container">
    <div class="col-md-6">
    <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Contraseña Incorrecta</strong> , Revise e Inténtelo de Nuevo. 
+    <strong>Contraseña Incorrecta</strong> , Revise e Inténtelo de Nuevo.
    </div>
    </div>
    </div>
@@ -203,8 +203,8 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   }
  }
 ?>
-  
-  
+
+
 <footer>
 </footer>
 </body>

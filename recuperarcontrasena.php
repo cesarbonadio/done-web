@@ -72,6 +72,12 @@
 
 <?php
 
+
+//usos del php mailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
 function enviarcontrasena($contrasena){ // manda la contrasena generada a los de rest y ellos la cambian en el usuario
 
   //generar arreglo
@@ -152,14 +158,80 @@ function randomString($tipo){
     return $rand;
 }
 
-
+//require_once 'vendor/autoload.php';
+//require 'PHPMailer/PHPMailerAutoload.php';
 
 if (isset($_POST['email_usuario'])){
 
 
 $correo=$_POST["email_usuario"]; //aqui se supone que se debe mandar el email al usuario con la nueva contrasena
-$contenido="\nCorreo: ".$correo."\ncontraseña: vla vbla bla";
+
+//$contenido="\nCorreo: ".$correo."\ncontraseña: vla vbla bla";
 /*mail($correo,"Recuperar contraseña", $contenido);*/
+
+
+
+
+
+
+
+//Load composer's autoloader
+require 'PHPMailer/vendor/autoload.php';
+
+$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+try {
+    //Server settings
+   $mail->SMTPDebug = 1;                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.sendgrid.net';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'mrdigitalav';                 // SMTP username
+    $mail->Password = '&!P@Pz`5=a+X^8:B';                           // SMTP password
+    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587;                                    // TCP port to connect to
+
+    //Recipients
+    $mail->setFrom('from@example.com', 'Mailer');
+    $mail->addAddress($correo, 'Joe User');     // Add a recipient
+    $mail->addAddress('ellen@example.com');               // Name is optional
+    $mail->addReplyTo('info@example.com', 'Information');
+    /*$mail->addCC('cc@example.com');
+    $mail->addBCC('bcc@example.com');*/
+
+    //Attachments
+  /*  $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name*/
+
+    //Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+}
+
+
+
+
+
+
+
+  /*$mail = new PHPMailer();
+  $mail->setFrom("cesarbonadio123@gmail.com", "jola00");
+  $mail->addAddress($correo, "hola");
+  $mail->isHTML(TRUE);
+  $mail->Subject = "Contraseña";
+  $mail->Body = "<h3>Esto es una prueba</h3>";
+
+  if ($mail->send()) echo "email sent";
+  else echo "error";*/
+
+
 
 
 echo "Por ahora solo genera contraseña<br>";
