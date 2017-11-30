@@ -218,8 +218,8 @@ try {
 
 ?>
 
-   <div class="ubicacion">
    <div class="container">
+   <div class="ubicacion">
    <div class="col-md-6">
    <div class="alert alert-info alert-dismissable">
    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
