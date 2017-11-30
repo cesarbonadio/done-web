@@ -69,11 +69,6 @@
 </section>
 
 
-<section class="container">
-<ul>
-<li><img id ="icono" src="code.svg" height="40" width="40"/><b id="descripcion_icon">Si olvidaste tu contraseña ingresa tu email de registro.</b><p id = "descripcion_icon" style ="text-align:none;"> Con tu email de registro podremos saber cual es tu contraseña, tu nueva contraseña será enviada a tu correo.</p></li>
-</ul>
-</section>
 
 </body>
 
@@ -246,6 +241,13 @@ enviarcontrasena($nuevacontra);
 
 
 ?>
+
+
+<section class="container">
+<ul>
+<li><img id ="icono" src="code.svg" height="40" width="40"/><b id="descripcion_icon">Si olvidaste tu contraseña ingresa tu email de registro.</b><p id = "descripcion_icon" style ="text-align:none;"> Con tu email de registro podremos saber cual es tu contraseña, tu nueva contraseña será enviada a tu correo.</p></li>
+</ul>
+</section>
 
 
 
