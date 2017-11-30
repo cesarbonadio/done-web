@@ -28,9 +28,15 @@
 </head>
 <style type="text/css">
   .ubicacion{
-    position: relative;
+    /*position: absolute;
     left:25%;
-    top:-335px;
+    top:-335px;*/
+    padding:5px;
+		width: 20%;
+		/*margin-right: 6%;*/
+    border-radius: 0px 0px 20px 20px;
+    /*margin: 20px auto;*/
+		margin-bottom: 20px;
   }
 </style>
 <body>
