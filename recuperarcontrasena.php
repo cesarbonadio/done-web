@@ -28,15 +28,9 @@
 </head>
 <style type="text/css">
   .ubicacion{
-    /*position: absolute;
+    position:relative;
     left:25%;
-    top:-335px;*/
-    padding:5px;
-		width: 20%;
-		/*margin-right: 6%;*/
-    border-radius: 0px 0px 20px 20px;
-    /*margin: 20px auto;*/
-		margin-bottom: 20px;
+    top:70%;
   }
 </style>
 <body>
@@ -74,16 +68,6 @@
 </form>
 </section>
 
-
-
-<section class="container">
-<ul>
-<li><img id ="icono" src="code.svg" height="40" width="40"/><b id="descripcion_icon">Si olvidaste tu contraseña ingresa tu email de registro.</b><p id = "descripcion_icon" style ="text-align:none;"> Con tu email de registro podremos saber cual es tu contraseña, tu nueva contraseña será enviada a tu correo.</p></li>
-</ul>
-</section>
-
-
-</body>
 
 
 
@@ -198,6 +182,13 @@ enviarcontrasena($nuevacontra);
 
 
 
+<section class="container">
+<ul>
+<li><img id ="icono" src="code.svg" height="40" width="40"/><b id="descripcion_icon">Si olvidaste tu contraseña ingresa tu email de registro.</b><p id = "descripcion_icon" style ="text-align:none;"> Con tu email de registro podremos saber cual es tu contraseña, tu nueva contraseña será enviada a tu correo.</p></li>
+</ul>
+</section>
 
+
+</body>
 
 </html>

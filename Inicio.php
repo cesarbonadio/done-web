@@ -30,9 +30,9 @@ ob_start();
 </head>
 <style type="text/css">
   .ubicacion{
-    position: relative;
+    position:relative;
     left:25%;
-    top:-335px;
+    top:70%;
   }
 </style>
 <body>
@@ -111,13 +111,6 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
 
 
 
-<section class="container">
-<ul>
-<li><img id ="icono" src="cloud.svg" height="40" width="40"/><b id="descripcion_icon">Si ya tienes una cuenta inicia sesión para ver tus tareas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
-<li><img id ="icono" src="smartphone.svg" height="40" width="40"/><b id="descripcion_icon">Disponible en dispositivos Android.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
-</ul>
-</section>
-
 
 
 <?php
@@ -155,7 +148,7 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
           curl_close($ch);
           return($codigo);
         }
-        
+
 
  include ("Usuario.php");
  $nombre=' ';
@@ -170,8 +163,8 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   $codigo=TransformToJson($nombre,$clave);
   if ($codigo==404){
   ?>
-   <div class="ubicacion">
    <div class="container">
+   <div class="ubicacion">
    <div class="col-md-6">
    <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -185,8 +178,8 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
 
   if ($codigo==401){
   ?>
-   <div class="ubicacion">
    <div class="container">
+   <div class="ubicacion">
    <div class="col-md-6">
    <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -203,6 +196,14 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   }
  }
 ?>
+
+
+<section class="container">
+<ul>
+<li><img id ="icono" src="cloud.svg" height="40" width="40"/><b id="descripcion_icon">Si ya tienes una cuenta inicia sesión para ver tus tareas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
+<li><img id ="icono" src="smartphone.svg" height="40" width="40"/><b id="descripcion_icon">Disponible en dispositivos Android.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
+</ul>
+</section>
 
 
 <footer>
