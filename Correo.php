@@ -1,3 +1,19 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel ="stylesheet" href="estilos.css"/>
+</head>
+
+<style type="text/css">
+  .ubicacion{
+    position:relative;
+    left:25%;
+    top:70%;
+    text-align:center;
+  }
+</style>
+
+
 <?php
 
 //usos del php mailer
@@ -82,30 +98,30 @@ class Correo {
                           <br> Tu nueva contrase&ntilde;a es:  <br>' .$contrasena.
                           '<br>Contacto: doneeeapp@gmail.com</br>
                           <br>No responder a este correo</br>';
- 
+
         $mail->send();
         echo 'Message has been sent';
 
 
     } catch (Exception $e) { // una excepcion (cualquier error que se pueda presentar en el php mailer, como correo no existe o falla de conexión al cliente web)
+    ?>
 
-  /*  ?>
 
-       <div class="ubicacion">
        <div class="container">
-       <div class="col-md-6">
-       <div class="alert alert-info alert-dismissable">
-       <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-       <strong>Algo salió mal</strong> , el correo no pudo ser enviado
-       </div>
-       </div>
-       </div>
-       </div>
+         <div class="ubicacion">
+          <div class="col-md-6">
+           <div class="alert alert-info alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+             <strong>Algo salió mal</strong> , el correo no pudo ser enviado. Comprueba tu conexión y tu correo
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <?php*/
+    <?php
 
-        echo 'Message could not be sent.';
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
+      /*  echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;*/
     }
 
 
