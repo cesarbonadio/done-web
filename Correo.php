@@ -65,7 +65,7 @@ class Correo {
         $mail->isHTML(true);//Set email format to HTML
         $mail->Subject = 'Nueva contraseña';
         $mail->Body    = 'Tu nueva contraseña ha sido <b>generada</b>
-                          <br> Tu nueva contraseña es: '.$contrasena' <br>
+                          <br> Tu nueva contraseña es:  <br>
                           <br>Contacto: doneeeapp@gmail.com</br>
                           <br>No responder a este correo</br>';
         $mail->AltBody = 'This is the HTML message body<b>in bold!</b> <br>Not reply this</br> <br>Contact us: doneeeapp@gmail.com</br>';
