@@ -82,20 +82,16 @@
 
 
 <?php
+ include ("Correo.php"); //incluir la clase Correo.php para mandar el mail
 
 
-//usos del php mailer
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 
 function enviarcontrasena($contrasena){ // manda la contrasena generada a los de rest y ellos la cambian en el usuario
-
   //generar arreglo
   $data = array(
     'password' => $contrasena,
   );
-
 
   $json = json_encode($data);
   $url = 'https://intense-lake-39874.herokuapp.com/usuarios/login';
@@ -131,6 +127,8 @@ else {
   curl_getinfo($ch, CURLINFO_HTTP_CODE);
   curl_close($ch);
 }
+
+
 
 
 
@@ -173,72 +171,13 @@ function randomString($tipo){
 
 
 
-
-
 if (isset($_POST['email_usuario'])){ // si introducio email
-$correo=$_POST["email_usuario"]; //aqui se supone que se debe mandar el email al usuario con la nueva contrasena
-
-//Load composer's autoloader
-require 'PHPMailer/vendor/autoload.php';
-
-$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-try {
-    //Server settings
-    $mail->SMTPDebug = 1;                                 // Enable verbose debug output
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.sendgrid.net';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'doneapp';                 // SMTP username
-    $mail->Password = 'doneapp123456';                           // SMTP password
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
-
-    //Recipients
-    $mail->setFrom('notreply@doneapp.com', 'Doneapp');
-    $mail->addAddress($correo);     // Add a recipient
-    //$mail->addAddress('ellen@example.com');               // Name is optional
-    $mail->addReplyTo('info@example.com', 'Information');
-    /*$mail->addCC('cc@example.com');
-    $mail->addBCC('bcc@example.com');*/
-
-    //Attachments
-  /*  $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name*/
-
-    //Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'New password';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b> <br>Not reply this</br> <br>Contact us: doneeeapp@gmail.com</br>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-    echo 'Message has been sent';
-
-} catch (Exception $e) {
-
-?>
-
-   <div class="ubicacion">
-   <div class="container">
-   <div class="col-md-6">
-   <div class="alert alert-info alert-dismissable">
-   <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-   <strong>Algo salió mal</strong> , el correo no pudo ser enviado
-   </div>
-   </div>
-   </div>
-   </div>
-
-<?php
-
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-}
+$email=$_POST["email_usuario"]; //aqui se supone que se debe mandar el email al usuario con la nueva contrasena
 
 
+$correo = new Correo($email);
+$correo->enviarNuevaContrasena(randomString(""));
 
-echo "Por ahora solo genera contraseña<br>";
-echo "Esta es la contraseña generada:" .randomString("");
 
 $nuevacontra = randomString("");
 enviarcontrasena($nuevacontra);
