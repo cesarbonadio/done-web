@@ -91,9 +91,6 @@
 <?php
 
 
-
-
-
 function enviarcontrasena($contrasena){ // manda la contrasena generada a los de rest y ellos la cambian en el usuario
   //generar arreglo
   $data = array(
@@ -173,11 +170,13 @@ function randomString($tipo){
     //Retorno del string aleatorio.
     return $rand;
 }
+?>
 
 
+<?php
 
-include ("Correo.php"); //incluir la clase Correo.php para mandar el mail
-if (isset($_POST['email_usuario'])){ // si introducio email
+include("Correo.php"); //incluir la clase Correo.php para mandar el mail
+if (isset($_POST['email_usuario'])){ // si introducido email
 
 $email=$_POST["email_usuario"]; //aqui se supone que se debe mandar el email al usuario con la nueva contrasena
 
