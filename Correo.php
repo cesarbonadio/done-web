@@ -9,6 +9,16 @@ require 'PHPMailer/vendor/autoload.php';
 
 
 
+/* Nota IMPORTANTE:
+ * El host de SMTP es un host de los servicios proporcionados por Sendgrid.net
+ * Para usar dichos servicios fue necesario la creación de un usuario en la plataforma
+ * El usuario: doneapp , la contrasena: doneapp123456
+ * El correo doneeeapp@gmail.com existe y es de soporte
+ * El correo notreply@doneapp.com no existe y tampoco es necesario que exista, ya que el correo es enviado a través de Sendgrid
+ */
+
+
+
 class Correo {
 
  //atributos
@@ -63,13 +73,16 @@ class Correo {
 
         //Content
         $mail->isHTML(true);//Set email format to HTML
-        $mail->Subject = 'Nueva contraseña';
-        $mail->Body    = 'Tu nueva contraseña ha sido <b>generada</b>
-                          <br> Tu nueva contraseña es:  <br>' .$contrasena.
+        $mail->Subject = 'Nueva contrase&ntilde;a';
+        $mail->Body    = 'Tu nueva contrase&ntilde;a ha sido <b>generada</b>
+                          <br> Tu nueva contrase&ntilde;a es:  <br>' .$contrasena.
                           '<br>Contacto: doneeeapp@gmail.com</br>
                           <br>No responder a este correo</br>';
-        $mail->AltBody = 'This is the HTML message body<b>in bold!</b> <br>Not reply this</br> <br>Contact us: doneeeapp@gmail.com</br>';
-
+        $mail->AltBody = 'Tu nueva contrase&ntilde;a ha sido <b>generada</b>
+                          <br> Tu nueva contrase&ntilde;a es:  <br>' .$contrasena.
+                          '<br>Contacto: doneeeapp@gmail.com</br>
+                          <br>No responder a este correo</br>';
+ 
         $mail->send();
         echo 'Message has been sent';
 

@@ -213,16 +213,12 @@
 
 
 <?php
-
 $url = '';
-
   include("Usuario.php");
     $usuario1 = new Usuario($nombrep,$apellido,$nombre,$pass,$pass2,$email,$nacimiento);
   if (isset($_POST["enviando"])) {
     $usuario1->transformToJson();
   }
-
-
 ?>
 
 <footer>
