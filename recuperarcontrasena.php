@@ -54,7 +54,7 @@
 
 <!---inicia el formulario-->
 <section class ="container">
-  <h2>Recuperar Contraseña</h2>
+  <h2>Recupera Contraseña</h2>
   <form  action="recuperarcontrasena.php" method="POST">
    <table align = "center" style ="background-color: rgba(255, 255, 255  , 0.2);">
      <tr>
