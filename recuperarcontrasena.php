@@ -172,9 +172,13 @@ function randomString($tipo){
 
 
 if (isset($_POST['email_usuario'])){ // si introducio email
-$email=$_POST["email_usuario"]; //aqui se supone que se debe mandar el email al usuario con la nueva contrasena
 
+	echo "2";
+	
+	$email=$_POST["email_usuario"]; //aqui se supone que se debe mandar el email al usuario con la nueva contrasena
 
+echo "1";
+	
 $correo = new Correo($email);
 $correo->enviarNuevaContrasena(randomString(""));
 
