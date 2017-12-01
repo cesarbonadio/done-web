@@ -37,7 +37,7 @@ class Correo {
 
 
         //Server settings
-        $mail->SMTPDebug = 1;//Enable verbose debug output
+        //$mail->SMTPDebug = 1;//Enable verbose debug output
         $mail->isSMTP();//Set mailer to use SMTP
         $mail->Host = 'smtp.sendgrid.net';//Specify main and backup SMTP servers
         $mail->SMTPAuth = true;//Enable SMTP authentication
