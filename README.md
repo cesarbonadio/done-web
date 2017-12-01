@@ -1,1 +1,2 @@
-https://radiant-ravine-12315.herokuapp.com/recuperarcontrasena.php
+https://radiant-ravine-12315.herokuapp.com
+
