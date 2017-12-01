@@ -76,13 +76,20 @@
 
 
 
+<section class="container">
+<ul>
+<li><img id ="icono" src="code.svg" height="40" width="40"/><b id="descripcion_icon">Si olvidaste tu contraseña ingresa tu email de registro.</b><p id = "descripcion_icon" style ="text-align:none;"> Con tu email de registro podremos saber cual es tu contraseña, tu nueva contraseña será enviada a tu correo.</p></li>
+</ul>
+</section>
+
+
 </body>
 
 
 
 
 <?php
- include ("Correo.php"); //incluir la clase Correo.php para mandar el mail
+
 
 
 
@@ -169,16 +176,12 @@ function randomString($tipo){
 
 
 
-
-
+include ("Correo.php"); //incluir la clase Correo.php para mandar el mail
 if (isset($_POST['email_usuario'])){ // si introducio email
 
-	echo "2";
-	
-	$email=$_POST["email_usuario"]; //aqui se supone que se debe mandar el email al usuario con la nueva contrasena
+$email=$_POST["email_usuario"]; //aqui se supone que se debe mandar el email al usuario con la nueva contrasena
 
-echo "1";
-	
+
 $correo = new Correo($email);
 $correo->enviarNuevaContrasena(randomString(""));
 
@@ -192,11 +195,6 @@ enviarcontrasena($nuevacontra);
 ?>
 
 
-<section class="container">
-<ul>
-<li><img id ="icono" src="code.svg" height="40" width="40"/><b id="descripcion_icon">Si olvidaste tu contraseña ingresa tu email de registro.</b><p id = "descripcion_icon" style ="text-align:none;"> Con tu email de registro podremos saber cual es tu contraseña, tu nueva contraseña será enviada a tu correo.</p></li>
-</ul>
-</section>
 
 
 
