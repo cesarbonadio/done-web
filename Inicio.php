@@ -155,18 +155,6 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
           curl_close($ch);
           return($codigo);
         }
-  function getRequestHeaders() {
-    $headers = array();
-    foreach($_SERVER as $key => $value) {
-        if (substr($key, 0, 5) <> 'HTTP_') {
-            continue;
-        }
-        $header = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
-        $headers[$header] = $value;
-    }
-    return $headers;
-}
-
  include ("Usuario.php");
  $nombre=' ';
  $clave=' ';
@@ -208,10 +196,8 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   <?php
   }
   if ($codigo==200){
-    $headers = getRequestHeaders();
-    foreach ($headers as $header => $value) {
-    echo "$header: $value <br />\n";
-  }
+    $headers = $_SERVER['HTTP_HOST'];
+    echo $headers;
     $url='bienvenido.php';
     //header("Location: $url");
   }
