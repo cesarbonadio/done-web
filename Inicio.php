@@ -20,6 +20,7 @@ ob_start();
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 
 
 
@@ -30,9 +31,9 @@ ob_start();
 </head>
 <style type="text/css">
   .ubicacion{
-    position:relative;
-    left:25%;
-    top:70%;
+    position: relative;
+    left:18%;
+    top:-335px;
   }
 </style>
 <body>
@@ -81,15 +82,15 @@ ob_start();
   </tr>
 
   <tr>
-  <td colspan="2" align="center"><input name="olvidecontra" type="submit" class="boton" value="Olvide mi contraseña"/> <td>
-  </tr>
+  <td colspan="2" align="center"><input name="olvidecontra" type="submit" class="boton" value="Olvide mi contraseña"  formnovalidate/> <td>
+  </tr> 
      </form>
-
+  
 </table>
 </section>
 
-
-
+ 
+  
 <?php
 if(isset($_POST['homepag'])){
    $url = 'index.php';
@@ -108,13 +109,19 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
  header("Location: $url");
 }
 ?>
-
-
-
-
-
+  
+  
+  
+<section class="container">
+<ul>
+<li><img id ="icono" src="cloud.svg" height="40" width="40"/><b id="descripcion_icon">Si ya tienes una cuenta inicia sesión para ver tus tareas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
+<li><img id ="icono" src="smartphone.svg" height="40" width="40"/><b id="descripcion_icon">Disponible en dispositivos Android.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
+</ul>
+</section>
+  
+  
+  
 <?php
-
   function transformToJson($usuario, $clave){
           $data = array(
             'username' => $usuario,
@@ -148,42 +155,40 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
           curl_close($ch);
           return($codigo);
         }
-
-
  include ("Usuario.php");
  $nombre=' ';
  $clave=' ';
  $direccion=' ';
-
-
+ 
  if (isset($_POST["enviando"])) {
   $nombre=$_POST["nombre_usuario"];
   $clave=$_POST["contrasena_usuario"];
-
   $codigo=TransformToJson($nombre,$clave);
   if ($codigo==404){
   ?>
-   <div class="container">
+  
    <div class="ubicacion">
+   <div class="container">
    <div class="col-md-6">
    <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Usuario No Existe</strong> , Revise e Inténtelo de Nuevo.
+    <strong>Usuario No Existe</strong> , Revise e Inténtelo de Nuevo. 
    </div>
    </div>
    </div>
    </div>
   <?php
   }
-
+   
   if ($codigo==401){
   ?>
-   <div class="container">
+   <br>
    <div class="ubicacion">
+   <div class="container">
    <div class="col-md-6">
    <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Contraseña Incorrecta</strong> , Revise e Inténtelo de Nuevo.
+    <strong>Contraseña Incorrecta</strong> , Revise e Inténtelo de Nuevo. 
    </div>
    </div>
    </div>
@@ -191,20 +196,13 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   <?php
   }
   if ($codigo==200){
+    $token = $_SERVER['HTTP_X_AUTH'];
+    echo $token;
     $url='bienvenido.php';
-    header("Location: $url");
+    //header("Location: $url");
   }
  }
 ?>
-
-
-<section class="container">
-<ul>
-<li><img id ="icono" src="cloud.svg" height="40" width="40"/><b id="descripcion_icon">Si ya tienes una cuenta inicia sesión para ver tus tareas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
-<li><img id ="icono" src="smartphone.svg" height="40" width="40"/><b id="descripcion_icon">Disponible en dispositivos Android.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
-</ul>
-</section>
-
 
 <footer>
 </footer>
