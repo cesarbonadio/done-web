@@ -196,8 +196,10 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   <?php
   }
   if ($codigo==200){
-    $token = $_SERVER['HTTP_ACCEPT'];
-    echo $token;
+    $headers = apache_request_headers();
+    foreach ($headers as $header => $value) {
+    echo "$header: $value <br />\n";
+}
     $url='bienvenido.php';
     //header("Location: $url");
   }
