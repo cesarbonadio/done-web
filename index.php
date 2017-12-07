@@ -51,11 +51,17 @@
   </footer>
 
 
-  <?php
-   $url = '';
-   if ( isset($_POST['Registro']) )
+  <?php 
+   session_start();
+    $url = '';
+    
+    if (isset($_SESSION['username']))
+     $url='bienvenido.php';
+ 
+   
+   else if ( isset($_POST['Registro']) )
     $url = 'Registro.php';
-   if ( isset($_POST['Inicio']) )
+   else if ( isset($_POST['Inicio']) )
     $url = 'Inicio.php';
    header("Location: $url");
  ?>
