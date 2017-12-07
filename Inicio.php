@@ -209,13 +209,21 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   <?php
   }
   if ($codigo==200){
+    session_start();
+    $_SESSION['username'] = $_POST["nombre_usuario"];
+    
+    
+    
     //$token = GetHeader();
-    $token=$_SERVER['HTTP_AUTH'];
-    echo $token;
+   /* $token=$_SERVER['HTTP_AUTH'];
+    echo $token;*/
     //$headers = $_SERVER['HTTP_REFERER'];
     //echo $headers;
+    
+    
+    
     $url='bienvenido.php';
-    //header("Location: $url");
+    header("Location: $url/$_SESSION['username']");
   }
  }
 ?>
