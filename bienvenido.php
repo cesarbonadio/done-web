@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<nav id="fondo" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" style ="margin-bottom: 20%;">
+<nav id="fondo" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
   <!-- Brand -->
   <a id="logo" class="navbar-brand" href="#">Done!</a>
 
@@ -41,7 +41,7 @@
 </nav>
 	
 	
-	
+	<p style="margin-bottom: 20%;">
 	
 	<?php 
 	
@@ -62,6 +62,8 @@
 	<a href="Logout.php">Cerrar Sesión</a>
 	
   <h1>Bienvenido a Done</h1>
+	
+	</p>
 
 </body>
 </html>
