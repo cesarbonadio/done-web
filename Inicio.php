@@ -92,7 +92,17 @@ ob_start();
  
   
 <?php
-if(isset($_POST['homepag'])){
+  
+ session_start();
+    
+    
+if (isset($_SESSION['username'])){
+     $url='bienvenido.php';
+    header("Location: $url");
+}
+  
+  
+else if(isset($_POST['homepag'])){
    $url = 'index.php';
    header("Location:$url");
  }
@@ -108,6 +118,9 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
  $url ="recuperarcontrasena.php";
  header("Location: $url");
 }
+  
+  
+  
 ?>
   
   
@@ -210,6 +223,8 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   }
   if ($codigo==200){
     session_start();
+    
+    
     $_SESSION['username'] = $nombre;
     
     
