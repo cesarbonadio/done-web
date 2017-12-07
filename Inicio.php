@@ -210,7 +210,7 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
   }
   if ($codigo==200){
     session_start();
-    $_SESSION['username'] = $_POST["nombre_usuario"];
+    $_SESSION['username'] = $nombre;
     
     
     
@@ -223,7 +223,7 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
     
     
     $url='bienvenido.php';
-    header("Location: $url/$_SESSION['username']");
+    header("Location: $url");
   }
  }
 ?>
