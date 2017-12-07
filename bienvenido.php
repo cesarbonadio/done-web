@@ -16,11 +16,12 @@
 	}
 	
 	
-	<a href="Logout.php">Cerrar Sesión</a>
+	
 
 	
 	?>
 	
+	<a href="Logout.php">Cerrar Sesión</a>
 	
   <h1>Bienvenido a Done</h1>
 </body>
