@@ -15,6 +15,10 @@
 	  header('Location: Inicio.php');
 	}
 	
+	
+	<a href="Logout.php">Cerrar Sesión</a>
+
+	
 	?>
 	
 	
