@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<nav id="fondo" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+<nav id="fondo" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" style ="margin-bottom: 20%;">
   <!-- Brand -->
   <a id="logo" class="navbar-brand" href="#">Done!</a>
 
