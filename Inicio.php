@@ -170,7 +170,6 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
         }
   function GetHeader() 
     {
-        $function GetHeader() 
       $strURL = "https://intense-lake-39874.herokuapp.com/usuarios/login";
  
       $resCurl = curl_init();
