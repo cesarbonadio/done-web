@@ -170,16 +170,28 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
         }
   function GetHeader() 
     {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, 'https://intense-lake-39874.herokuapp.com');
-        curl_setopt($curl, CURLOPT_FILETIME, true);
-        curl_setopt($curl, CURLOPT_NOBODY, true);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER, true);
-        $header = curl_getinfo($curl,CURLINFO_FILETIME);
-        //$token = curl_getinfo($header);
-        curl_close($curl);
-        return $header;
+        $function GetHeader() 
+    {
+      $strURL = "https://intense-lake-39874.herokuapp.com/usuarios/login";
+ 
+      $resCurl = curl_init();
+ 
+      //set URL and other appropriate options
+      curl_setopt($resCurl, CURLOPT_URL, $strURL);
+      curl_setopt($resCurl, CURLOPT_HEADER, true);
+      curl_setopt($resCurl, CURLOPT_NOBODY, true);
+      curl_setopt($resCurl, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($resCurl, CURLOPT_FOLLOWLOCATION, true);
+ 
+      //get the headers
+      $strHeaders = curl_exec($resCurl);
+ 
+      //close cURL
+      curl_close($resCurl);
+ 
+      return $strHeaders;
+
+    }
     }
  include ("Usuario.php");
  $nombre=' ';
@@ -228,7 +240,8 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
     $_SESSION['username'] = $nombre;
     
     
-    
+    $token = GetHeader();
+    echo $token;
     //$token = GetHeader();
    /* $token=$_SERVER['HTTP_AUTH'];
     echo $token;*/
@@ -238,7 +251,7 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
     
     
     $url='bienvenido.php';
-    header("Location: $url");
+    //header("Location: $url");
   }
  }
 ?>
