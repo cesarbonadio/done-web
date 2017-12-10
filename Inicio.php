@@ -236,8 +236,9 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
     $_SESSION['username'] = $nombre;
     
     
-    $token = GetHeader();
-    echo $token;
+    //$token = GetHeader();
+    //echo $token;
+    print_r(get_headers('https://intense-lake-39874.herokuapp.com/usuarios/login'));
     //$token = GetHeader();
    /* $token=$_SERVER['HTTP_AUTH'];
     echo $token;*/
