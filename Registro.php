@@ -118,34 +118,6 @@ session_start();
       return "Las contrasenas no coinciden";
     }
   }
-
-
-
-
-  include("Usuario.php");
-  include ("Alerta.php");
-
-
-
-  if (isset($_POST["enviando"])) {
-    $usuario = new Usuario();
-    $usuario = Usuario::conRegistro($nombrep,$apellido,$nombre,$pass,$pass2,$email,$nacimiento);
-
-
-    $codigo = $usuario->transformToJson_registro();
-
-
-    if($codigo == '4'){
-    	/*$nameErr = "El nombre de usuario ya existe";*/
-      $alert = new Alerta("Usuario registrado", ",Ese usuario ya existe");
-      $alert->mostrar();
-    }
-
-
-
-  }
-
-
 ?>
 
     </section>
@@ -232,8 +204,67 @@ session_start();
 <!-- -termina el formulario-->
 </section>
 
-<section class="container" >
 
+
+
+<?php
+
+
+include("Usuario.php");
+include("Alerta.php");
+
+
+
+if (isset($_POST["enviando"])) {
+  $usuario = new Usuario();
+  $usuario = Usuario::conRegistro($nombrep,$apellido,$nombre,$pass,$pass2,$email,$nacimiento);
+
+
+  $codigo = $usuario->transformToJson_registro();
+
+
+  if($codigo == '4'){
+    /*$nameErr = "El nombre de usuario ya existe";*/
+    $alert = new Alerta("No puedes registrarte", ",Ese usuario ya existe");
+    $alert->mostrar();
+  }
+
+  if($codigo == '24'){
+   $alert = new Alerta("No puedes registrarte", ",Eres menor de edad");
+   $alert->mostrar();
+  }
+
+  if (codigo == '5'){
+   $alert = new Alerta ("No puedes registrarte", ",Ese correo ya está en uso");
+   $alert->mostrar();
+  }
+
+  
+
+
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="container" >
 <ul>
 <li><img id ="icono" src="views/images/plus.svg" height="40" width="40"/><b id="descripcion_icon">Añade tareas por hacer.</b> <p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
 <li><img id ="icono" src="views/images/error.svg" height="40" width="40"/><b id="descripcion_icon">Elimina tareas añadidas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
@@ -242,7 +273,6 @@ session_start();
 <li><img id ="icono" src="views/images/smartphone.svg" height="40" width="40"/><b id="descripcion_icon">Disponible en dispositivos Android.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
 <li><img id ="icono" src="views/images/list.svg" height="40" width="40"/><b id="descripcion_icon">Categoriza tus tareas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
 </ul>
-
 </section>
 
 
