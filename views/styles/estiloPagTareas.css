@@ -1,0 +1,166 @@
+#logo{
+	font-family: 'Lobster', cursive;
+	color: #eee;
+	font-size: 50px;
+}
+
+.navbar-brand{
+	position: fixed;
+	width: 100%;
+	left: 0;
+	text-align: center;
+	margin-bottom: 20%;
+}
+
+
+.navbar-toggle {
+	z-index:2;
+}
+
+.dropdown-toggle::after{
+	display: none;
+}
+
+#fondo{
+	background-image: url(../images/fondo.svg);
+}
+
+.objeto{
+	font-size: 20px;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, .1)), url(fondo.svg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Diseño de toda la barra lateral*/
+
+*{
+	margin:0px;
+	padding:0px;
+	font-family: verdana;
+	color:#bcbcbc;
+}
+
+body{
+
+}
+
+/*menu lateral*/
+
+div#barra-lateral{
+	position:fixed;
+	width:65px;
+	height:100%;
+	background-color:#2f3030;
+	overflow:hidden;
+	-webkit-transition:width 0.2s cubic-bezier(.61,.01,.37,1);
+}
+
+div#barra-lateral:hover{
+	width:200px;
+}
+
+div#logo-menu{
+	width:40px;
+	height:40px;
+	margin:10px;
+	background-image:url(pictures/menu.png);
+}
+
+div#contenedor-logos-primero{
+	margin-top:70px;
+}
+
+div.contenedor-logos{
+	margin-top:20px;
+	margin-left:10px;
+	width:130px;
+	height:40px;
+
+}
+
+div.logo-perfil{
+	width:40px;
+	height:40px;
+	background-image:url(../images/user.svg);
+	float: left;
+}
+
+
+div.logo-ayuda{
+	width:40px;
+	height:40px;
+	background-image:url(../images/info.svg);
+	float: left;
+}
+
+div.logo-config{
+	width:40px;
+	height:40px;
+	background-image:url(../images/settings.svg);
+	float: left;
+}
+
+
+p.title-menu{
+	margin-left:60px;
+	line-height: 40px;
+}
+
+/*body*/
+
+div#body{
+	position:absolute;
+	right:0px;
+	min-height:300px;
+	left:150px;
+	top: 40px;
+}
+
+div#texto{
+	width:60%;
+	min-height:300px;
+}
+
+p#texto-contenedor-1{
+	font-size:25px;
+	margin:30px;
+	margin-top:50px;
+	margin-left: 45px;
+	color:#595959;
+}
+
+div#foto{
+	width:50%;
+	height:300px;
+	float:right;
+}
+
+img#foto-contenedor-1{
+	margin:auto;
+	margin-top:15px;
+	width:300px;
+	display:block;
+}
