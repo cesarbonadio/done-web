@@ -134,10 +134,9 @@ session_start();
 
     $codigo = $usuario->transformToJson_registro();
 
-    echo "LOL".$codigo;
+    echo "<br>este es el codigo: ".$codigo;
 
     if($codigo == '4'){
-      echo "hola";
     	/*$nameErr = "El nombre de usuario ya existe";*/
       $alert = new Alerta("Usuario registrado", ",Ese usuario ya existe");
       $alert->mostrar();
