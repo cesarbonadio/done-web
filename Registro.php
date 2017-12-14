@@ -234,7 +234,7 @@ if (isset($_POST["enviando"])) {
    $alert->mostrar();
   }
 
-  if (codigo == '5'){
+  if ($codigo == '5'){
    $alert = new Alerta ("No puedes registrarte", ",Ese correo ya está en uso");
    $alert->mostrar();
   }
