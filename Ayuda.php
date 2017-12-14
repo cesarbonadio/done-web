@@ -9,7 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="estiloPagTareas.css">
+  <link rel="stylesheet" type="text/css" href="views/styles/estiloPagTareas.css">
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   <script src="https://use.fontawesome.com/5643167d36.js"></script>
 </head>
