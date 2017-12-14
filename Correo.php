@@ -10,15 +10,6 @@ include ("Alerta.php");
 
 
 
-/* Nota IMPORTANTE:
- * El host de SMTP es un host de los servicios proporcionados por Sendgrid.net
- * Para usar dichos servicios fue necesario la creación de un usuario en la plataforma
- * El usuario: doneapp , la contrasena: doneapp123456
- * El correo doneeeapp@gmail.com existe y es de soporte
- * El correo notreply@doneapp.com no existe y tampoco es necesario que exista, ya que el correo es enviado a través de Sendgrid
- */
-
-
 
 class Correo {
 

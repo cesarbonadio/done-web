@@ -1,10 +1,21 @@
-
 <?php
-class Usuario{
+
+/*Esta clase se usa para:
+*
+* Instanciar un objeto usuario para mandarlo a registrarse o para chequear su inicio se sesion
+*/
+
+
+class Usuario {
+
+
+
+
 //atributos
   private $id;
   private $edad;
-  private $contrasena; private $contrasena_2;
+  private $contrasena;
+  private $contrasena_2;
   private $email;
   private $nacimiento;
   private $genero;
@@ -29,7 +40,7 @@ public function __construct() {}
 
      $instance->nombrep = $nombrep;
      $instance->apellido = $apellido;
-     $instance->id = $id; 
+     $instance->id = $id;
      $instance->contrasena= $contrasena;
      $instance->contrasena_2= $contrasena2;
      $instance->email = $email;
@@ -37,7 +48,7 @@ public function __construct() {}
 
 return $instance;
 
-     
+
 }
 
 
@@ -60,7 +71,7 @@ return $instance;
 
 //metodos
 
-        
+
 function transformToJson_registro(){
 
   $data = array(
@@ -145,13 +156,13 @@ function transformToJson_registro(){
           return ($error);
 }
 
-function transformtoJson_inicio(){
 
+
+function transformtoJson_inicio(){
   $data = array(
             'username' => $this->id,
             'password' => $this->contrasena
   );
-
 
           $json = json_encode($data);
           $url = 'https://intense-lake-39874.herokuapp.com/usuarios/login';
@@ -202,7 +213,7 @@ function transformtoJson_inicio(){
 
 
 
-function ImprimirDatosUsuario(){
+function imprimirDatosUsuario(){ /*funcion extra para verificar que datos se estan mandando*/
   echo "<br><br>Lo que se registro:";
   echo "<br> Nombre del usuario: ". $this->id."<br>";
   echo "<br> Constraseña del usuario: ".$this->contrasena."<br>";
@@ -218,7 +229,7 @@ function ImprimirDatosUsuario(){
 function getnombre(){
   return $this->nombre;
 }
-        
+
 function getcontrasena(){
   return $this->contrasena;
 }
@@ -233,7 +244,7 @@ function getemail(){
 
 function getnacimiento(){
   return $this->nacimiento;
-}        
+}
 
 
 }

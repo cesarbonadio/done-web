@@ -126,7 +126,7 @@ session_start();
   include ("Alerta.php");
 
 
-    
+
   if (isset($_POST["enviando"])) {
     $usuario = new Usuario();
     $usuario = Usuario::conRegistro($nombrep,$apellido,$nombre,$pass,$pass2,$email,$nacimiento);
@@ -134,7 +134,6 @@ session_start();
 
     $codigo = $usuario->transformToJson_registro();
 
-    
 
     if($codigo == '4'){
     	/*$nameErr = "El nombre de usuario ya existe";*/
@@ -142,7 +141,7 @@ session_start();
       $alert->mostrar();
     }
 
-/*.........*/
+
 
   }
 

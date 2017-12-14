@@ -74,10 +74,6 @@ ob_start();
 
 
 
-
-
-
-
 <!---inicia el formulario-->
 <section class ="container">
   <h2>Entrar</h2>
