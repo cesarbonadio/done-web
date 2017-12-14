@@ -10,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
 
-  <link rel="stylesheet" type="text/css" href="estiloPagTareas.css">
+  <link rel="stylesheet" type="text/css" href="views/style/estiloPagTareas.css">
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   <script src="https://use.fontawesome.com/5643167d36.js"></script>
 
