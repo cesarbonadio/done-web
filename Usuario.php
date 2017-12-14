@@ -71,7 +71,7 @@ return $instance;
 
 //metodos
 
-
+/*registrarse*/
 function transformToJson_registro(){
 
   $data = array(
@@ -157,7 +157,7 @@ function transformToJson_registro(){
 }
 
 
-
+/*verficar inicio de sesion*/
 function transformtoJson_inicio(){
   $data = array(
             'username' => $this->id,
@@ -213,6 +213,10 @@ function transformtoJson_inicio(){
 
 
 
+
+
+
+
 function imprimirDatosUsuario(){ /*funcion extra para verificar que datos se estan mandando*/
   echo "<br><br>Lo que se registro:";
   echo "<br> Nombre del usuario: ". $this->id."<br>";
@@ -221,6 +225,10 @@ function imprimirDatosUsuario(){ /*funcion extra para verificar que datos se est
   echo "<br> Email: ".$this->email."<br>";
   echo "<br> Nacimiento: ".$this->nacimiento."<br>";
 }
+
+
+
+
 
 
 
