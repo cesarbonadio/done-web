@@ -20,7 +20,6 @@ ob_start();
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 
 
 
@@ -28,14 +27,8 @@ ob_start();
 </head>
 
 
-</head>
-<style type="text/css">
-  .ubicacion{
-    position: relative;
-    left:18%;
-    top:-335px;
-  }
-</style>
+
+
 <body>
 
   <header>
@@ -49,6 +42,34 @@ ob_start();
      </form>
     </section>
   </header>
+
+
+  <?php /*Botones de la página de inicio*/
+     session_start();
+
+  if (isset($_SESSION['username'])){
+      $url='bienvenido.php';
+     header("Location: $url");
+  }
+  else if(isset($_POST['homepag'])){
+     $url = 'index.php';
+     header("Location:$url");
+   }
+  else if(isset($_POST['registrarsepag'])){
+     $url = 'Registro.php';
+     header("Location:$url");
+   }
+  else if(isset($_POST['iniciopag'])){
+    $url = 'Inicio.php';
+    header("Location:$url");
+   }
+  else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, te lleva a recuperar contraseña
+   $url ="recuperarcontrasena.php";
+   header("Location: $url");
+  }
+  ?>
+
+
 
 
 
@@ -83,58 +104,25 @@ ob_start();
 
   <tr>
   <td colspan="2" align="center"><input name="olvidecontra" type="submit" class="boton" value="Olvide mi contraseña"  formnovalidate/> <td>
-  </tr> 
+  </tr>
+
      </form>
-  
+
 </table>
 </section>
 
- 
-  
+
+
+
+
+
+
 <?php
-  
- session_start();
-    
-    
-if (isset($_SESSION['username'])){
-     $url='bienvenido.php';
-    header("Location: $url");
-}
-  
-  
-else if(isset($_POST['homepag'])){
-   $url = 'index.php';
-   header("Location:$url");
- }
-else if(isset($_POST['registrarsepag'])){
-   $url = 'Registro.php';
-   header("Location:$url");
- }
-else if(isset($_POST['iniciopag'])){
-  $url = 'Inicio.php';
-  header("Location:$url");
- }
-else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, te lleva a recuperar contraseña
- $url ="recuperarcontrasena.php";
- header("Location: $url");
-}
-  
-  
-  
-?>
-  
-  
-  
-<section class="container">
-<ul>
-<li><img id ="icono" src="cloud.svg" height="40" width="40"/><b id="descripcion_icon">Si ya tienes una cuenta inicia sesión para ver tus tareas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
-<li><img id ="icono" src="smartphone.svg" height="40" width="40"/><b id="descripcion_icon">Disponible en dispositivos Android.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
-</ul>
-</section>
-  
-  
-  
-<?php
+include ("Usuario.php");
+include ("Alerta.php");
+
+
+
   function transformToJson($usuario, $clave){
           $data = array(
             'username' => $usuario,
@@ -150,108 +138,90 @@ else if (isset($_POST["olvidecontra"])){ // si presionas olvide mi contrasena, t
           curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
           //Configurar el content type a application/json
           curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-          curl_exec($ch);
-          /*if (!curl_errno($ch)) {
-            switch ($http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE)) {
-              case 200: #OK
-                break;
-              case 400: echo 'Bad request';
-                break;
-              case 404: echo 'Not found';
-                break;
-              default: echo 'Código http inesperado: ', $http_code, "\n";
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          $json = curl_exec($ch);
+          $co =json_decode($json);
+          //$codigo = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          if ($co->codigo=='0'){
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_VERBOSE, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $response = curl_exec($ch);
+            $header=print_r($response,TRUE);
+            $bandera=TRUE;
+            $longitud=strlen($header);
+            $n=0;
+            $c=0;
+            $token='';
+            while (($longitud>$n)&($bandera)) {
+              if (substr($header,$n,8)=='X-Auth: '){
+              $n= $n +8;
+              $bandera=FALSE;
+                while (substr($header,$n,12)!='Content-Type') {
+                  $token = $token.$header[$n];
+                  $n ++;
+                }
             }
-          }*/
-          //echo curl_getinfo($ch, CURLINFO_HTTP_CODE);
-          $codigo = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $n ++;
+           }
+           echo $token;
+          }
           //curl_getinfo($ch, CURLINFO_HTTP_CODE);
           curl_close($ch);
-          return($codigo);
-        }
-  function GetHeader() 
-    {
-      $strURL = "https://intense-lake-39874.herokuapp.com/usuarios/login";
- 
-      $resCurl = curl_init();
- 
-      //set URL and other appropriate options
-      curl_setopt($resCurl, CURLOPT_URL, $strURL);
-      curl_setopt($resCurl, CURLOPT_HEADER, true);
-      curl_setopt($resCurl, CURLOPT_NOBODY, true);
-      curl_setopt($resCurl, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($resCurl, CURLOPT_FOLLOWLOCATION, true);
- 
-      //get the headers
-      $strHeaders = curl_exec($resCurl);
- 
-      //close cURL
-      curl_close($resCurl);
- 
-      return $strHeaders;
-    }
- include ("Usuario.php");
+          return($co->codigo);
+   }
+
  $nombre=' ';
  $clave=' ';
  $direccion=' ';
- 
+
+
+
  if (isset($_POST["enviando"])) {
+
   $nombre=$_POST["nombre_usuario"];
   $clave=$_POST["contrasena_usuario"];
   $codigo=TransformToJson($nombre,$clave);
-  if ($codigo==404){
-  ?>
-  
-   <div class="ubicacion">
-   <div class="container">
-   <div class="col-md-6">
-   <div class="alert alert-info alert-dismissable">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Usuario No Existe</strong> , Revise e Inténtelo de Nuevo. 
-   </div>
-   </div>
-   </div>
-   </div>
-  <?php
+
+
+
+
+  if ($codigo=='1'){ /*Si el usuario no esta registrado, muestra alerta*/
+   $alert = new Alerta("Usuario no registrado", ", Revise e intentelo de nuevo");
+   $alert->mostrar();
   }
-   
-  if ($codigo==401){
-  ?>
-   <br>
-   <div class="ubicacion">
-   <div class="container">
-   <div class="col-md-6">
-   <div class="alert alert-info alert-dismissable">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Contraseña Incorrecta</strong> , Revise e Inténtelo de Nuevo. 
-   </div>
-   </div>
-   </div>
-   </div>
-  <?php
+
+
+
+  if ($codigo=='2'){ /*Si la contraseña del usuario no es la correcta, muestra correcta*/
+    $alert = new Alerta("Contraseña incorrecta", ", Revise e intentelo de nuevo");
+    $alert->mostrar();
   }
-  if ($codigo==200){
-    session_start();
-    
-    
-    $_SESSION['username'] = $nombre;
-    
-    
-    //$token = GetHeader();
-    //echo $token;
-    print_r(get_headers('https://intense-lake-39874.herokuapp.com/usuarios/login'));
-    //$token = GetHeader();
-   /* $token=$_SERVER['HTTP_AUTH'];
-    echo $token;*/
-    //$headers = $_SERVER['HTTP_REFERER'];
-    //echo $headers;
-    
-    
-    
-    $url='bienvenido.php';
+
+  if ($codigo=='3'){
+    $alert = new Alerta("Usuario Bloqueado", ", Su Nueva clave fue enviada a su correo");
+    $alert->mostrar();
+  }
+
+  if ($codigo=='0'){ /*Si no, te lleva a iniciar sesión */
+    //session_start();
+    //$_SESSION['username'] = $nombre;
+    //$url='bienvenido.php';
     //header("Location: $url");
   }
+
+
  }
 ?>
+
+
+<section class="container">
+<ul>
+<li><img id ="icono" src="cloud.svg" height="40" width="40"/><b id="descripcion_icon">Si ya tienes una cuenta inicia sesión para ver tus tareas.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
+<li><img id ="icono" src="smartphone.svg" height="40" width="40"/><b id="descripcion_icon">Disponible en dispositivos Android.</b><p id = "descripcion_icon" style ="text-align:none;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis, lorem quis cursus ullamcorper, leo leo pharetra risus, et fermentum nibh augue sed mauris. Nunc quis sapien id augue dignissim pellentesque eu ac lacus. Etiam vel diam nec augue pharetra gravida at vel odio.</p></li>
+</ul>
+</section>
+
 
 <footer>
 </footer>

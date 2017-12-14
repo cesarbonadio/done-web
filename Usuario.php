@@ -1,3 +1,4 @@
+
 <?php
 class Usuario{
 //atributos
@@ -47,7 +48,6 @@ function ImprimirDatosUsuario(){
         function getnacimiento(){
           return $this->nacimiento;
         }
-
         function transformToJson(){
           $data = array(
             'email' => $this->email,
@@ -62,32 +62,49 @@ function ImprimirDatosUsuario(){
           $url = 'https://intense-lake-39874.herokuapp.com/usuarios';
           //Iniciar cURL
           $ch = curl_init($url);
-
           //Decir a curl que se quiere mandar un POST
           curl_setopt($ch, CURLOPT_POST, 1);
           //Adjuntar el json string al POST
           curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
           //Configurar el content type a application/json
           curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
-          curl_exec($ch);
-
-          if (!curl_errno($ch)) {
-            switch ($http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE)) {
-              case 200: #OK
-                break;
-              case 400: echo 'Bad request';
-                break;
-              case 404: echo 'Not found';
-                break;
-              case 412: echo 'Usuario ya existe';
-                break;
-              default: echo 'Código http inesperado: ', $http_code, "\n";
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          $json = curl_exec($ch);
+          $co =json_decode($json);
+          //if (!curl_errno($ch)) {
+          if ($co->codigo=='0'){
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_VERBOSE, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $response = curl_exec($ch);
+            $header=print_r($response,TRUE);
+            $bandera=TRUE;
+            $longitud=strlen($header);
+            $n=0;
+            $c=0;
+            $token='';
+            while (($longitud>$n)&($bandera)) {
+              if (substr($header,$n,8)=='X-Auth: '){
+              $n= $n +8;
+              $bandera=FALSE;
+                while (substr($header,$n,12)!='Content-Type') {
+                  $token = $token.$header[$n];
+                  $n ++;
+                }
             }
+            $n ++;
+           }
+           echo $header;
+           echo $token;
           }
-          curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
+          //$http_info = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+          //}
+          //curl_getinfo($ch, CURLINFO_HTTP_CODE);
           curl_close($ch);
+          return ($co->codigo);
+
         }
+
+
 }
 ?>
