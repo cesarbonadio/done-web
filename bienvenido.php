@@ -62,6 +62,7 @@
     </a>
 
         <?php
+        include("Token.php");
           session_start();
           if (isset($_SESSION['username'])){ ?>
             <p class="title-menu"><?php echo $_SESSION['username'];?></p>
@@ -69,7 +70,22 @@
           }else{
             header('Location: Inicio.php');
           }
+
+
+          if (isset($_SESSION['token'])){
+          	  $token = new Token($_SESSION['token']);
+          	  $DatosUsuario = $token->ConsultarDatosUsuario();
+        //$tarea = $token->PostTarea("hola","probando","31-12-2017");
+        //$token->PostTareas("hola","probando");
+          }
+
+
+
+
           ?>
+
+
+
 
 	</div>
 
@@ -102,10 +118,11 @@
 <div id="body" class = "container">
 			<div id="texto">
 				<p id="texto-contenedor-1">Aquí van las categorías listadas</p>
-        <p id="texto-contenedor-1" style = "font-size:20px;">* Categoría 1 - Descripción - Enlace</p>
+        <p id="texto-contenedor-1" style = "font-size:20px;">* Categoría 1 - <?php/* print_r($tarea);*/?>- Enlace</p>
           <p id="texto-contenedor-1" style = "font-size:20px;">* Categoría 2 - Descripción - Enlace</p>
             <p id="texto-contenedor-1" style = "font-size:20px;">* Categoría 3 - Descripción - Enlace</p>
               <p id="texto-contenedor-1" style = "font-size:20px;">* Categoría 4 - Descripción - Enlace</p>
+               <p id="texto-contenedor-1" style = "font-size:20px;"> <?php $token->PostTareas("hola","probando"); ?></p>
                </div>
 </div>
 

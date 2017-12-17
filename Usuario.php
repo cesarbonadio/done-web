@@ -54,9 +54,8 @@ return $instance;
 
 
 function conInicio($id,$contrasena){
+
 /*constructor si quiere iniciar sesion*/
-
-
  $instance = new self();
 
     $instance->id = $id;
@@ -101,7 +100,7 @@ function transformToJson_registro(){
           $http_info = curl_getinfo($ch, CURLINFO_HTTP_CODE);
           if ($http_info!=200){
             $co = print_r($mensaje,true);
-            echo $co;
+            /*echo $co;*/
             $bandera=TRUE;
             $longitud=strlen($co);
             $error='';
@@ -122,37 +121,12 @@ function transformToJson_registro(){
             $co = json_decode($mensaje);
             $error = $co->codigo;
           }
-          //if (!curl_errno($ch)) {
-          if ($error=='0'){
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_VERBOSE, 1);
-            curl_setopt($ch, CURLOPT_HEADER, 1);
-            $response = curl_exec($ch);
-            $header=print_r($response,TRUE);
-            $bandera=TRUE;
-            $longitud=strlen($header);
-            $n=0;
-            $c=0;
-            $token='';
-            while (($longitud>$n)&($bandera)) {
-              if (substr($header,$n,8)=='X-Auth: '){
-              $n= $n +8;
-              $bandera=FALSE;
-                while (substr($header,$n,12)!='Content-Type') {
-                  $token = $token.$header[$n];
-                  $n ++;
-                }
-            }
-            $n ++;
-           }
-           echo $token;
-           //echo $header;
-          }
+
+          //echo $header;
           //$http_info = curl_getinfo($ch, CURLINFO_HTTP_CODE);
           //}
           //curl_getinfo($ch, CURLINFO_HTTP_CODE);
           curl_close($ch);
-          echo $error;
           return ($error);
 }
 
@@ -178,6 +152,8 @@ function transformtoJson_inicio(){
           $json = curl_exec($ch);
           $co =json_decode($json);
 
+          $token='';
+
 
           //$codigo = curl_getinfo($ch, CURLINFO_HTTP_CODE);
           if ($co->codigo=='0'){
@@ -202,12 +178,15 @@ function transformtoJson_inicio(){
             }
             $n ++;
            }
-           echo $token;
           }
           //curl_getinfo($ch, CURLINFO_HTTP_CODE);
           curl_close($ch);
-          return($co->codigo);
+          $array = array($co->codigo,$token);
+          return($array);
 }
+
+
+
 
 
 

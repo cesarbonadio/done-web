@@ -136,24 +136,25 @@ include ("Alerta.php");
 
 
 
-  if ($codigo=='1'){ /*Si el usuario no esta registrado, muestra alerta*/
+  if ($codigo[0]=='1'){ /*Si el usuario no esta registrado, muestra alerta*/
    $alert = new Alerta("Usuario no registrado", ", Revise e intentelo de nuevo");
    $alert->mostrar();
   }
 
-  if ($codigo=='2'){ /*Si la contraseña del usuario no es la correcta, muestra correcta*/
+  if ($codigo[0]=='2'){ /*Si la contraseña del usuario no es la correcta, muestra correcta*/
     $alert = new Alerta("Contraseña incorrecta", ", Revise e intentelo de nuevo");
     $alert->mostrar();
   }
 
-  if ($codigo=='3'){
+  if ($codigo[0]=='3'){
     $alert = new Alerta("Usuario Bloqueado", ", Su Nueva clave fue enviada a su correo");
     $alert->mostrar();
   }
 
-  if ($codigo=='0'){ /*Si no, te lleva a iniciar sesión */
+  if ($codigo[0]=='0'){ /*Si no, te lleva a iniciar sesión */
     session_start();
     $_SESSION['username'] = $nombre;
+    $_SESSION['token'] = $codigo[1];
     $url='bienvenido.php';
     header("Location: $url");
   }

@@ -1,4 +1,7 @@
-﻿<!--Formulario de prueba-->
+<!--Formulario de prueba-->
+<?php
+ob_start();
+?>
 <!doctype html>
 <html>
 <head>
@@ -239,6 +242,11 @@ if (isset($_POST["enviando"])) {
    $alert->mostrar();
   }
 
+  if ($codigo == '0'){
+    $url='Inicio.php';
+    header("Location: $url");
+  }
+
 
 
 
@@ -280,3 +288,6 @@ if (isset($_POST["enviando"])) {
 </body>
 
 </html>
+<?php
+ob_end_flush();
+?>
