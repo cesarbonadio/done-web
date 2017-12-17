@@ -125,7 +125,6 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',
-    'Content-Length: ' . strlen($json),
    'X-AUTH: '.$this->tokenid
 ));
 
