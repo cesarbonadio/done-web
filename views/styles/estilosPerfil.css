@@ -1,0 +1,13 @@
+p#texto-contenedor-1{
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  font-size: 40px;
+  margin-left: 200px;
+  background-color: white;
+  border-radius:10px;
+  background-color: rgba(55, 156, 173  , 0.5);
+  width: 80%;
+}
+#imagenPerfil {
+  margin-left: 380px;
+}

@@ -1,0 +1,93 @@
+body {
+  background-image:none;
+  background-color: #D8D8D8;
+}
+
+
+#identificadorentrada {
+  font-family: 'Quicksand', sans-serif;
+   text-align:center;
+   padding-left: 10px;
+   margin-bottom: 20px;
+   color:white;
+   font-size: 1.3em;
+   width: 35%;
+}
+
+
+input, textarea, select, button {
+  font-family: 'Roboto', sans-serif;
+  width : 90%;
+  color: #626262;
+  background-color: #FFF;
+  border: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+  border-radius: 4px;
+
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  -webkit-box-sizing: border-box; /* Para google chrome */
+  -moz-box-sizing: border-box; /* para mozilla firefox */
+  -ms-box-sizing: border-box; /* internet explorer, edge */
+  -o-box-sizing: border-box; /* opera */
+  box-sizing: border-box; /* otros */
+
+display:block;
+margin-left: auto;
+margin-right: auto;
+position: relative;
+}
+
+input{
+height: 30px;
+}
+
+
+input:focus {
+background: linear-gradient(left, #FFFFFF, #EFEFEF);
+background: -moz-linear-gradient(left, #FFFFFF, #EFEFEF);
+background: -webkit-linear-gradient(left, #FFFFFF, #EFEFEF);
+background: -o-linear-gradient(left, #FFFFFF, #EFEFEF);
+}
+
+
+input[type=submit]{
+ width: 200px;
+ height: 50px;
+ padding : 2px 2px 2px 2px;
+}
+
+input[type=submit]:hover{
+background-color: #D2F9FF;
+}
+
+input[type=submit]:focus{
+  background: none;
+  background-color: #9FF1FE;
+  color: black;
+}
+
+table{
+  padding:5px;
+  width: 100%;
+  border-radius: 20px 20px 20px 20px;
+  background-color: rgba(55, 156, 173  , 0.8);
+  margin-left:21%;
+}
+
+p#texto-contenedor-1{
+	color:#595959;
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  font-size: 40px;
+  margin-left: 200px;
+  border-radius:10px;
+  background-color: rgba(55, 156, 173  , 0.5);
+  width: 80%;
+}
