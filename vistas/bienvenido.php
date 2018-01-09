@@ -1,3 +1,7 @@
+<?php
+ob_start(); // buffer
+?>
+
 <!DOCTYPE html>
 
 
@@ -43,8 +47,6 @@
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="Creartareas.php">Crear tarea</a>
-          <a class="dropdown-item" href="#">Crear lista de tareas</a>
-          <a class="dropdown-item" href="#">Ver lista de tareas</a>
           <a class="dropdown-item" href="Perfil.php">Ver perfil</a>
           <a class="dropdown-item" href="../controladores/logout_controller.php">Cerrar Sesión</a>
         </div>
@@ -140,12 +142,40 @@
  ?></p><?php
 
          if (sizeof($datos[0])==0){
-            echo "- Aun no tiene tareas registradas :( "."<br>";
-            echo "Ve al menu y presiona crear tarea para agregar una tarea";
+            echo "<p id ='texto-contenedor-1' style='background-color:white; font-size:16px;'>- Aun no tiene tareas registradas de esta categoría "."<br>";
+            echo "Ve al menu y presiona crear tarea para agregar una tarea </p>";
            } else{
          for ($i = 0; $i<sizeof($datos[0]); $i++){
 
-         ?><p id="texto-contenedor-2" style = "font-size:20px;" ><?php
+
+         ?>
+
+
+
+
+         <li class="nav-item dropdown" style ="margin-left:185px;">
+          <a class="objeto nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+          <form method="post" action="bienvenido.php">
+          <button name="borrando_tarea" type="submit" class="boton" value= <?php echo $datos[0][$i]->_id ?> style = "color:#383838;"/> Eliminar Tarea </button>
+          <?php if ($datos[0][$i]->completado==false) {?>
+          <button name="modificando_tarea" type="submit" class="boton" value= <?php echo $datos[0][$i]->_id ?> style = "color:#383838;" /> Modificar Tarea </button>
+        <?php } if ($datos[0][$i]->completado==false) {?>
+           <button name="completada_tarea" type="submit" class="boton" value= <?php echo $datos[0][$i]->_id ?> style = "color:#383838;" /> Completar Tarea </button>
+          <?php } else { ?>
+           <button name="descompletada_tarea" type="submit" class="boton" value= <?php echo $datos[0][$i]->_id ?> style = "color:#383838;" /> Descompletar Tarea </button>
+          <?php } ?>
+          </form>
+        </div>
+        </li>
+
+         <p id="texto-contenedor-2" style = "font-size:20px;" >
+        <!-- Menu desplegable -->
+
+
+         <?php
 
          echo "<br>";
          echo "* Tarea ".($i+1)."<br>";
@@ -155,11 +185,12 @@
             echo "Completado: no";
           }else{ echo "Completado: sí";}
          echo "<br><br>";
-
-       } ?> </p> <?php
+         ?>
+         <?php
+         }
         }
       }
-    //$token->EditarTarea("5a4c5cd1e6092500142f7d06","cambio");
+      include("../controladores/bienvenido_controller.php");
    }
 ?>
 
@@ -170,4 +201,10 @@
 
 
 </body>
+
+
 </html>
+
+<?php
+ob_end_flush(); //buffer
+?>

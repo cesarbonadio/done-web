@@ -76,7 +76,7 @@
     <tr>
       <td id ="identificadorentrada">E-mail</td>
       <td><label for="email_usuario"></label>
-      <input type="email" name="email_usuario" id="email_usuario" placeholder="Introduzca un email válido" value="<?php if (isset($_SESSION['email_usuario'])){ echo $_SESSION['email_usuario'];} ?>"><a href="#" data-toggle="tooltip" title="" required>
+      <input type="email" name="email_usuario" id="email_usuario" placeholder="Introduzca un email válido" value="<?php if (isset($_SESSION['email_usuario'])){ echo $_SESSION['email_usuario'];} ?>" required><a href="#" data-toggle="tooltip" title="" required>
         </a></td>
     </tr>
     <tr>

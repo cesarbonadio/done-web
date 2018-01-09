@@ -34,8 +34,6 @@
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="CrearTareas.php">Crear tarea</a>
-          <a class="dropdown-item" href="#">Crear lista de tareas</a>
-          <a class="dropdown-item" href="#">Ver lista de tareas</a>
           <a class="dropdown-item" href="Perfil.php">Ver perfil</a>
           <a class="dropdown-item" href="../controladores/logout_controller.php">Cerrar Sesión</a>
         </div>

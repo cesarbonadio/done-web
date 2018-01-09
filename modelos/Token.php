@@ -191,12 +191,15 @@ public function CambiarClave_recuperada($email){
 
 
 //////////////////////////////////////////
-public function EditarTarea($id,$cambio){
+public function EditarTarea($id,$titulo,$descripcion,$fecha,$categoria){
 
 
-      $data = array(
-         'titulo' => $cambio
-      );
+  $data = array(
+    'titulo' => $titulo,
+    'descripcion' => $descripcion,
+    'fechaParaSerCompletada' => $fecha,
+    'categoria' => $categoria
+  );
 
       $json = json_encode($data);
       $url = 'https://intense-lake-39874.herokuapp.com/tareas/'.$id;
@@ -223,15 +226,25 @@ public function EditarTarea($id,$cambio){
       )
     ));
   $response = curl_exec($ch);
-
-echo $response;
-
-  $respuesta = json_decode($response);
-
-  print_r($respuesta);
-
-  curl_close($ch);
+   curl_close($ch);
 }
+
+
+public function GetTareaID($id){
+   $url = 'https://intense-lake-39874.herokuapp.com/tareas/id/'.$id;
+    //Iniciar cURL
+    $ch = curl_init($url);
+    $curl_headers = array();
+    $curl_headers[] = 'X-AUTH: '.$this->tokenid;
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $curl_headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $json = curl_exec($ch);
+    $co = json_decode($json);
+    curl_close($ch);
+    $datos = array($co->titulo,$co->descripcion,$co->fechaParaSerCompletada);
+    return $datos;
+}
+
 
  public function PostCategoria($nombre){
     $data = array(
@@ -291,8 +304,56 @@ echo $response;
       curl_close($ch);
       return $datos;
   }
+public function EliminarTarea($id){
+   $url = 'https://intense-lake-39874.herokuapp.com/tareas/'.$id;
+   //Iniciar cURL
+    $ch = curl_init($url);
+    $curl_headers = array();
+    $curl_headers[] = 'X-AUTH: '.$this->tokenid;
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $curl_headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $json = curl_exec($ch);
+    curl_close($ch);
+    return $json;
+}
+public function CompletarTarea($id,$completada){
+  $data = array(
+         'completado' => $completada
+      );
 
+      $json = json_encode($data);
+      $url = 'https://intense-lake-39874.herokuapp.com/tareas/'.$id;
 
+      //el url del curl
+      $ch = curl_init($url);
+
+  $this->tokenid = substr($this->tokenid,0,-2);
+  $tokenid = $this->tokenid;
+  $st2 = "x-auth: ".$tokenid;
+
+    curl_setopt_array($ch, array(
+      CURLOPT_URL => $url,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'PATCH',
+      CURLOPT_POSTFIELDS => $json,
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        $st2
+      )
+    ));
+  $response = curl_exec($ch);
+
+  //$respuesta = json_decode($response);
+
+  curl_close($ch);
+
+  return $response;
+}
 
 
 

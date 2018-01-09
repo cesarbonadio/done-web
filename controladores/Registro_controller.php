@@ -21,6 +21,7 @@ if (isset($_POST["enviando"])) {
   $_SESSION["contrasena_usuario"] = $pass;
   $_SESSION["contrasena_usuario_repetir"] = $pass2;
   if ($pass!=$pass2){
+    echo"<br>";
     $alert = new Alerta ("No puedes registrarte,", "Las contraseñas no coinciden");
     $alert->mostrar();
     unset($_SESSION["contrasena_usuario_repetir"]);
@@ -30,6 +31,8 @@ if (isset($_POST["enviando"])) {
   $usuario = new Usuario();
   $usuario = Usuario::conRegistro($nombrep,$apellido,$nombre,$pass,$pass2,$email,$nacimiento);
   $codigo = $usuario->transformToJson_registro();
+
+  echo "<br>";
 
 
   switch ($codigo) {
@@ -48,6 +51,13 @@ if (isset($_POST["enviando"])) {
     unset($_SESSION["fecha_nacimiento"]);
     break;
 
+    case '38':
+    #MENOR A 18
+    $alert = new Alerta("No puedes registrarte,", "Debe ingresar un año mayor a 1918");
+    $alert->mostrar();
+    unset($_SESSION["fecha_nacimiento"]);
+    break;
+
     case '5':
     #CORREO EN USO
     $alert = new Alerta ("No puedes registrarte,", "Ese correo ya está en uso");
@@ -62,16 +72,26 @@ if (isset($_POST["enviando"])) {
     unset($_SESSION["nombre_usuario"]);
     break;
 
+
     case '17':
     #LIMITE CARACTERES
-    $alert = new Alerta ("No puedes registrarte,", "Muchos caracteres en el nombre");
+    $alert = new Alerta ("No puedes registrarte,", "Muchos caracteres en el nombre (max 50)");
     $alert->mostrar();
     unset($_SESSION["nombre_persona"]);
     break;
 
+
+    case '18':
+    #LIMITE CARACTERES
+    $alert = new Alerta ("No puedes registrarte,", "Muy pocos caracteres en el nombre (min 1)");
+    $alert->mostrar();
+    unset($_SESSION["nombre_persona"]);
+    break;
+
+
     case '20':
     #LIMITE CARACTERES
-    $alert = new Alerta ("No puedes registrarte,", "Muchos caracteres en el apellido");
+    $alert = new Alerta ("No puedes registrarte,", "Muchos caracteres en el apellido (max 50)");
     $alert->mostrar();
     unset($_SESSION["apellido_persona"]);
     break;
@@ -83,6 +103,16 @@ if (isset($_POST["enviando"])) {
     unset($_SESSION["contrasena_usuario"]);
     unset($_SESSION["contrasena_usuario_repetir"]);
     break;
+
+
+    case '14':
+    #LIMITE CARACTERES
+    $alert = new Alerta ("No puedes registrarte,", "La contraseña solo puede contener caracteres alfanuméricos y los caracteres especiales: - @ . $ * # & + _");
+    $alert->mostrar();
+    unset($_SESSION["contrasena_usuario"]);
+    unset($_SESSION["contrasena_usuario_repetir"]);
+    break;
+
 
     case '9':
     #LIMITE CARACTERES

@@ -15,9 +15,13 @@ if (isset($_SESSION['token'])){
           $descripcion = $_POST['descripcion_tarea'];
           $fecha = $_POST['fecha_tarea'];
           $categoria = ucfirst($_POST['categoria_tarea']);
-          
+
 
           $codigo = $token->PostTareas($titulo,$descripcion,$fecha,$categoria);
+
+
+
+
           switch ($codigo) {
 
             case '0':
@@ -48,12 +52,30 @@ if (isset($_SESSION['token'])){
               $alert->mostrar();
               break;
 
+            case '39':
+              #lIMITE DE CARACTERES
+              echo "<br><br><br><br><br><br><br><br>";
+              $alert = new Alerta("No se pudo enviar tu tarea,","La fecha tiene que ser mayor o igual a la fecha actual");
+              $alert->mostrar();
+              break;
+
+
+           case '37':
+              #lIMITE DE CARACTERES
+              echo "<br><br><br><br><br><br><br><br>";
+              $alert = new Alerta("No se pudo enviar tu tarea,","La descripción contiene codigo script no permitido");
+              $alert->mostrar();
+              break;
+
             default:
               echo "<br><br><br><br><br><br><br><br>";
               $alert = new Alerta("Algo salio mal :(,","los servicios de Done no estan disponibles");
               $alert->mostrar();
               break;
           }
+
+
+         echo "<script>console.log('$codigo');</script>";
 
       }
 

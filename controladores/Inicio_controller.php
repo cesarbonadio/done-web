@@ -32,7 +32,7 @@ include("../vistas/scripts/Alerta.php");
 
     case '3':
       # code...
-      $alert = new Alerta("Usuario Bloqueado", ", Su Nueva clave fue enviada a su correo");
+      $alert = new Alerta("Usuario Bloqueado", ", Necesita recuperar su contraseña ");
       $alert->mostrar();
       break;
 
